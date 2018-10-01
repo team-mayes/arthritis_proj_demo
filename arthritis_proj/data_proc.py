@@ -1,13 +1,16 @@
 """
 data_proc.py
-Demo including processing data from a csv
-
-Handles the primary functions
+Demo including:
+ - reading in numeric data from a csv
+ - calculating the mean, max, and min per row
+ - plotting the results
 """
 
 import sys
 import argparse
 import numpy as np
+import matplotlib.pyplot as plt
+import os
 
 SUCCESS = 0
 IO_ERROR = 2
@@ -33,11 +36,13 @@ def data_analysis(data_array):
     data_stats : numpy array
         array with same number of rows as data_array, and columns for average, max, and min values (in that order)
     """
-    print(type(data_array))
-    print(data_array)
     num_patients, num_days = data_array.shape
-
     data_stats = np.zeros((num_patients, 3))
+
+    data_stats[:, 0] = np.mean(data_array, axis=1)
+    data_stats[:, 1] = np.max(data_array, axis=1)
+    data_stats[:, 2] = np.min(data_array, axis=1)
+
     return data_stats
 
 
@@ -65,12 +70,44 @@ def parse_cmdline(argv):
     return args, SUCCESS
 
 
+def plot_stats(base_f_name, data_stats):
+    """
+    Makes a plot of the mean, max, and min inflammation per patient
+    :param base_f_name: str of base output name (without extension)
+    :param data_stats: numpy array with shape (num_patients, num_stats) where num_stats = 3 (mean, max, min)
+    :return: saves a png file
+    """
+    num_patients, num_stats = data_stats.shape
+    x_axis = np.arange(1, num_patients + 1, 1)
+    # red dashes, blue squares and green triangles
+    plt.plot(x_axis, data_stats[:, 0], 'bs',
+             x_axis, data_stats[:, 1], 'g^',
+             x_axis, data_stats[:, 2], 'r.')
+    plt.title('Patient Arthritis Data')
+    plt.xlabel('Patient Number')
+    plt.ylabel('Plasma Inflammation Units')
+    out_name = base_f_name + ".png"
+    plt.savefig(out_name)
+    print("Wrote file: {}".format(out_name))
+
+
 def main(argv=None):
     args, ret = parse_cmdline(argv)
     if ret != SUCCESS:
         return ret
     data_stats = data_analysis(args.csv_data)
-    print(data_stats)
+
+    # get the name of the input file without the directory it is in, if one was specified
+    base_out_fname = os.path.basename(args.csv_data_file)
+    # get the first part of the file name (omit extension) and add the suffix
+    base_out_fname = os.path.splitext(base_out_fname)[0] + '_stats'
+    # add suffix and extension
+    out_fname = base_out_fname + '.csv'
+    np.savetxt(out_fname, data_stats, delimiter=',')
+    print("Wrote file: {}".format(out_fname))
+
+    # send the base_out_fname and data to a new function that will plot the data
+    plot_stats(base_out_fname, data_stats)
     return SUCCESS  # success
 
 
