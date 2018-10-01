@@ -20,27 +20,25 @@ def warning(*objs):
     print("WARNING: ", *objs, file=sys.stderr)
 
 
-def canvas(with_attribution=True):
+def data_analysis(data_array):
     """
-    Placeholder function to show example docstring (NumPy format)
-
-    Replace this function and doc string for your own project
+    Finds the average, min, and max for each row of the given array
 
     Parameters
     ----------
-    with_attribution : bool, Optional, default: True
-        Set whether or not to display who the quote is from
+    data_array : numpy array of patient data (one line per patient, daily measurements) in plasma inflammation units
 
     Returns
     -------
-    quote : str
-        Compiled string including quote and optional attribution
+    data_stats : numpy array
+        array with same number of rows as data_array, and columns for average, max, and min values (in that order)
     """
+    print(type(data_array))
+    print(data_array)
+    num_patients, num_days = data_array.shape
 
-    quote = "The code is but a canvas to our imagination."
-    if with_attribution:
-        quote += "\n\t- Adapted from Henry David Thoreau"
-    return quote
+    data_stats = np.zeros((num_patients, 3))
+    return data_stats
 
 
 def parse_cmdline(argv):
@@ -58,7 +56,7 @@ def parse_cmdline(argv):
     args = None
     try:
         args = parser.parse_args(argv)
-        np.loadtxt(fname=args.csv_data_file, delimiter=',')
+        args.csv_data = np.loadtxt(fname=args.csv_data_file, delimiter=',')
     except IOError as e:
         warning("Problems reading file:", e)
         parser.print_help()
@@ -71,7 +69,8 @@ def main(argv=None):
     args, ret = parse_cmdline(argv)
     if ret != SUCCESS:
         return ret
-    print(args.csv_data_file)
+    data_stats = data_analysis(args.csv_data)
+    print(data_stats)
     return SUCCESS  # success
 
 
