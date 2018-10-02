@@ -107,3 +107,9 @@ ENV/
 # output files not to be saved
 arthritis_proj/sample_data_stats.csv
 arthritis_proj/sample_data_stats.png
+arthritis_proj_demo.iml
+
+/sample_data_stats.png
+/sample_data_stats.csv
+
+out/
