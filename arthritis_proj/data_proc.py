@@ -58,8 +58,8 @@ def parse_cmdline(argv):
 
     # initialize the parser object:
     parser = argparse.ArgumentParser()
-    parser.add_argument("-c", "--csv_data_file", help="The location (folder and file name) of the csv file with data "
-                                                      "to analyze",
+    parser.add_argument("-c", "--csv_data_file", help="The location (directory and file name) of the csv file with "
+                                                      "data to analyze",
                         default=DEFAULT_DATA_FILE_LOC)
     args = None
     try:
