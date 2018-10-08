@@ -1,5 +1,5 @@
 """
-Unit and regression test for the arthritis_proj package.
+Unit and regression test for data_proc.py
 """
 import errno
 import os
