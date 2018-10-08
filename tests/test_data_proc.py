@@ -57,11 +57,22 @@ class TestMain(unittest.TestCase):
             silent_remove(DEF_CSV_OUT, disable=DISABLE_REMOVE)
             silent_remove(DEF_PNG_OUT, disable=DISABLE_REMOVE)
 
+
+class TestMainBadInput(unittest.TestCase):
     def testMissingFile(self):
         test_input = ["-c", "ghost.txt"]
-        main(test_input)
+        if logger.isEnabledFor(logging.DEBUG):
+            main(test_input)
         with capture_stderr(main, test_input) as output:
             self.assertTrue("ghost.txt" in output)
+
+    def testDataDiffNumCols(self):
+        input_file = os.path.join(TEST_DATA_DIR, "sample_data3_diff_cols.csv")
+        test_input = ["-c", input_file]
+        if logger.isEnabledFor(logging.DEBUG):
+            main(test_input)
+        with capture_stderr(main, test_input) as output:
+            self.assertTrue("Wrong number of columns" in output)
 
 
 class TestDataAnalysis(unittest.TestCase):

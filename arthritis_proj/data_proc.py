@@ -13,6 +13,7 @@ import matplotlib.pyplot as plt
 import os
 
 SUCCESS = 0
+INVALID_DATA = 1
 IO_ERROR = 2
 
 DEFAULT_DATA_FILE_NAME = 'sample_data.csv'
@@ -69,6 +70,10 @@ def parse_cmdline(argv):
         warning("Problems reading file:", e)
         parser.print_help()
         return args, IO_ERROR
+    except ValueError as e:
+        warning("Read invalid data:", e)
+        parser.print_help()
+        return args, INVALID_DATA
 
     return args, SUCCESS
 
