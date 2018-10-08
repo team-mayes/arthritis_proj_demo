@@ -60,10 +60,12 @@ install:
     # Install pip only modules
   - pip install codecov
 
-  - conda install --use-local arthritis_proj
+  - ls
+
+  - conda install --use-local arthritis_proj_demo
 
 script:
-  - pytest -v --cov=arthritis_proj arthritis_proj/tests/
+  - pytest -v --cov=arthritis_proj arthritis_proj_demo/tests/
 
 notifications:
     email: false
