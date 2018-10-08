@@ -65,7 +65,7 @@ install:
   #- conda install --use-local arthritis_proj_demo
 
 script:
-  - pytest -v --cov=arthritis_proj arthritis_proj_demo/tests/
+  - pytest -v --cov=arthritis_proj tests/
 
 notifications:
     email: false
