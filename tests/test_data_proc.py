@@ -45,7 +45,7 @@ def silent_remove(filename, disable=False):
 
 class TestMain(unittest.TestCase):
     # These tests make sure that the program can run properly from main
-    def testNoArgs(self):
+    def testSampleData(self):
         # Checks that runs with defaults and that files are created
         test_input = ["-c", DEFAULT_DATA_FILE_LOC]
         try:
@@ -61,7 +61,7 @@ class TestMain(unittest.TestCase):
             silent_remove(DEF_PNG_OUT, disable=DISABLE_REMOVE)
 
 
-class TestMainBadInput(unittest.TestCase):
+class TestMainFailWell(unittest.TestCase):
     def testMissingFile(self):
         test_input = ["-c", "ghost.txt"]
         if logger.isEnabledFor(logging.DEBUG):
