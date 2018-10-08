@@ -9,7 +9,7 @@ from contextlib import contextmanager
 from io import StringIO
 import numpy as np
 import logging
-from arthritis_proj import main, DEFAULT_DATA_FILE_LOC, data_analysis
+from arthritis_proj import main, data_analysis
 
 # logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -18,6 +18,9 @@ DISABLE_REMOVE = logger.isEnabledFor(logging.DEBUG)
 CURRENT_DIR = os.path.dirname(__file__)
 MAIN_DIR = os.path.join(CURRENT_DIR, '..')
 TEST_DATA_DIR = os.path.join(CURRENT_DIR, 'data_proc')
+PROJ_DIR = os.path.join(MAIN_DIR, 'arthritis_proj')
+DATA_DIR = os.path.join(PROJ_DIR, 'data')
+DEFAULT_DATA_FILE_LOC = os.path.join(DATA_DIR, 'sample_data.csv')
 
 # Assumes running tests from the main directory
 DEF_CSV_OUT = os.path.join(MAIN_DIR, 'sample_data_stats.csv')
@@ -44,7 +47,7 @@ class TestMain(unittest.TestCase):
     # These tests make sure that the program can run properly from main
     def testNoArgs(self):
         # Checks that runs with defaults and that files are created
-        test_input = []
+        test_input = ["-c", DEFAULT_DATA_FILE_LOC]
         try:
             main(test_input)
             # checks that the expected message is sent to standard out

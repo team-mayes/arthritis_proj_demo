@@ -16,9 +16,7 @@ SUCCESS = 0
 INVALID_DATA = 1
 IO_ERROR = 2
 
-DEFAULT_DATA_FILE_NAME = 'sample_data.csv'
-DATA_DIR = os.path.join(os.path.dirname(__file__), 'data')
-DEFAULT_DATA_FILE_LOC = os.path.join(DATA_DIR, DEFAULT_DATA_FILE_NAME)
+DEFAULT_DATA_FILE_NAME = 'data.csv'
 
 
 def warning(*objs):
@@ -61,7 +59,7 @@ def parse_cmdline(argv):
     parser = argparse.ArgumentParser()
     parser.add_argument("-c", "--csv_data_file", help="The location (directory and file name) of the csv file with "
                                                       "data to analyze",
-                        default=DEFAULT_DATA_FILE_LOC)
+                        default=DEFAULT_DATA_FILE_NAME)
     args = None
     try:
         args = parser.parse_args(argv)
