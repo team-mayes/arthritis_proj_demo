@@ -11,11 +11,8 @@ from __future__ import print_function
 import sys
 import argparse
 import numpy as np
-import matplotlib as plt
+import matplotlib.pyplot as plt
 import os
-if os.environ.get('DISPLAY','') == '':
-    print('no display found. Using non-interactive Agg backend')
-    plt.use('Agg')
 
 SUCCESS = 0
 INVALID_DATA = 1
