@@ -27,6 +27,9 @@ install:
   - ./.travis/install.sh
 
 script:
+  - which pytest
+  - source activate test-environment
+  - which pytest
   - pytest -v --cov=arthritis_proj tests/
 
 notifications:
