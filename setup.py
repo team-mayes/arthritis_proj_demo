@@ -30,7 +30,7 @@ setup(
                                       ],
                   },
     package_dir={'arthritis_proj': 'arthritis_proj'},
-    install_requires=['numpy', 'matplotlib==2.2.3']
+    install_requires=['numpy', 'matplotlib']
 
     # Additional entries you may want simply uncomment the lines you want and fill in the data
     # author_email='me@place.org',      # Author email
