@@ -1,13 +1,5 @@
 language: python
 
-#python:
-## We don't actually use the Travis Python, but this keeps it organized.
-#- "3.5"
-#- "3.6"
-
-## Run jobs on container-based infrastructure, can be overridden per job
-#dist: trusty
-
 matrix:
   include:
     # Extra includes for OSX since python language is not available by default on OSX
@@ -30,10 +22,6 @@ before_install:
   - uname -a
   - df -h
   - ulimit -a
-
-#    # Install the Python environment
-#  - source devtools/travis-ci/before_install.sh
-#  - python -V
 
 install:
   - ./.travis/install.sh
