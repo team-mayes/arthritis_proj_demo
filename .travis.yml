@@ -33,13 +33,12 @@ install:
   - # Useful for debugging any issues with conda
   - conda info -a
 
-  - conda create -q -n test-environment python=$PYTHON_VER pip pytest pytest-cov
+  - conda create -q -n test-environment python=$PYTHON_VER pip pytest pytest-cov python.app
   - source activate test-environment
-  - python setup.py install
+  - pythonw setup.py install
 
   - # Install pip only modules
   - pip install codecov
-  - which pytest
 
 script:
   - pytest -v --cov=arthritis_proj tests/
