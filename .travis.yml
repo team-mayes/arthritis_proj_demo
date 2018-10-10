@@ -33,7 +33,7 @@ install:
   - # Useful for debugging any issues with conda
   - conda info -a
 
-  - conda create -q -n test-environment python=$PYTHON_VER pip pytest pytest-cov python.app
+  - conda create -q -n test-environment python=$PYTHON_VER pip pytest pytest-cov
   - source activate test-environment
   - pythonw setup.py install
 
@@ -41,6 +41,8 @@ install:
   - pip install codecov
 
 script:
+  - # Allows matplotlib to render in all envs
+  - export MPLBACKEND=module://AGG
   - pytest -v --cov=arthritis_proj tests/
 
 notifications:
