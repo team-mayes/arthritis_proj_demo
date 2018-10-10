@@ -42,7 +42,7 @@ install:
 
 script:
   - # Allows matplotlib to render in all envs
-  - export MPLBACKEND=module://Agg
+  - export MPLBACKEND=Agg
   - pytest -v --cov=arthritis_proj tests/
 
 notifications:
