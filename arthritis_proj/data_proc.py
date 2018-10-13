@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 data_proc.py
 Demo including:
@@ -6,6 +7,7 @@ Demo including:
  - plotting the results
 """
 
+from __future__ import print_function
 import sys
 import argparse
 import numpy as np

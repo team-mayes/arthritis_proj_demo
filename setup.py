@@ -3,7 +3,7 @@ arthritis_proj
 Demo including processing data from a csv
 """
 from setuptools import setup
-# import versioneer
+import versioneer
 
 DOCLINES = __doc__.split("\n")
 
@@ -13,8 +13,8 @@ setup(
     author='hbmayes',
     description=DOCLINES[0],
     long_description="\n".join(DOCLINES[2:]),
-    # version=versioneer.get_version(),
-    # cmdclass=versioneer.get_cmdclass(),
+    version=versioneer.get_version(),
+    cmdclass=versioneer.get_cmdclass(),
     license='MIT',
 
     # Which Python importable modules should be included when your package is installed
@@ -28,7 +28,9 @@ setup(
 
     entry_points={'console_scripts': ['data_proc = arthritis_proj.data_proc:main',
                                       ],
-                  },     package_dir={'arthritis_proj': 'arthritis_proj'}, install_requires=['numpy', 'matplotlib']
+                  },
+    package_dir={'arthritis_proj': 'arthritis_proj'},
+    install_requires=['numpy', 'matplotlib']
 
     # Additional entries you may want simply uncomment the lines you want and fill in the data
     # author_email='me@place.org',      # Author email

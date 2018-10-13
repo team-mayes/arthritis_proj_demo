@@ -1,0 +1,2 @@
+include versioneer.py
+include arthritis_proj/_version.py
