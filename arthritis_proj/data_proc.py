@@ -12,6 +12,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 
+from md_utils.md_common import ThrowingArgumentParser
+
 SUCCESS = 0
 INVALID_DATA = 1
 IO_ERROR = 2
@@ -56,7 +58,8 @@ def parse_cmdline(argv):
         argv = sys.argv[1:]
 
     # initialize the parser object:
-    parser = argparse.ArgumentParser()
+    parser = ThrowingArgumentParser(description='Reads in a csv (no header) and calculates the mean, max, and min for '
+                                                'each row. There must be the same number of values in each row.')
     parser.add_argument("-c", "--csv_data_file", help="The location (directory and file name) of the csv file with "
                                                       "data to analyze",
                         default=DEFAULT_DATA_FILE_NAME)
